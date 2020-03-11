@@ -35,8 +35,8 @@ app.get('/get/initial-data', (req, res) => {
     res.send(initializeData)
 });
 
-app.post('/patch/product-button-click', (req, res) => {
-    const selectedItemIndex = req.body.index;
+app.patch('/patch/product-button-click', (req, res) => {
+    const selectedItemIndex = req.body.index - 1;
     const selectedItemPrice = productList[selectedItemIndex].price;
     const selectedItemName = productList[selectedItemIndex].name;
     const productButtonClickResponse = {};
