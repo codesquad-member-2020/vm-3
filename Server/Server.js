@@ -21,6 +21,7 @@ let collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
 let walletCashArray = [0, 1, 5, 5, 2, 2, 1];
 let collectedCash = 0;
 let walletCash = 0;
+let inputNumber = 0;
 
 app.get('/get/initial-data', (req, res) => {
     initializeValue();
@@ -54,6 +55,18 @@ app.patch('/patch/product-button-click', (req, res) => {
     }
 
     res.send(productButtonClickResponse);
+});
+
+app.patch('/patch/numberButtonClick', (req, res) => {
+    const numberButtonClickResponse = {};
+
+    inputNumber = (inputNumber % 10) * 10 + req.body.number;
+
+    numberButtonClickResponse.message = [];
+    numberButtonClickResponse.message.push(`${req.body.number} 가 입력되었습니다`)
+    numberButtonClickResponse.message.push(`현재 입력된 번호는 ${inputNumber} 입니다`);
+
+    res.send(numberButtonClickResponse);
 });
 
 function initializeValue() {
