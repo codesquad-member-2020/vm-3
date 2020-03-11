@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./reset.css">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="stylesheet" type="text/css" href="./vendingMachineStyle.css">
-    <link rel="stylesheet" type="text/css" href="./productListStyle.css">
-    <link rel="stylesheet" type="text/css" href="./productSelectionStyle.css">
-    <link rel="stylesheet" type="text/css" href="./walletStyle.css">
+    <link rel="stylesheet" type="text/css" href="./reset.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./vendingMachineStyle.css" />
+    <link rel="stylesheet" type="text/css" href="./productListStyle.css" />
+    <link rel="stylesheet" type="text/css" href="./productSelectionStyle.css" />
+    <link rel="stylesheet" type="text/css" href="./walletStyle.css" />
     <script src="./main.js" type="module"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrap">
-        <div class="vendingMachine">
-            <div class="productListArea">
-            </div>
-            <div class="productSelectionArea">
-            </div>
-            <div class="walletArea">
-            </div>
+      <div class="vendingMachine">
+        <div class="productListArea"></div>
+        <div class="productSelectionArea">
+          <div class="inputAmount"><span></span> 원</div>
+          <ol class="selectBtns">
+            <li><button>1</button></li>
+            <li><button>2</button></li>
+            <li><button>3</button></li>
+            <li><button>4</button></li>
+            <li><button>5</button></li>
+            <li><button>6</button></li>
+            <li><button>7</button></li>
+            <li><button>8</button></li>
+            <li><button>9</button></li>
+            <li><button>OK</button></li>
+            <li><button>0</button></li>
+            <li><button>Cancel</button></li>
+          </ol>
+          <div class="messageArea"></div>
         </div>
+        <div class="walletArea"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
