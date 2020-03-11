@@ -108,7 +108,7 @@ app.patch('/patch/money-button-click', (req, res) => {
         moneyButtonClicResponse.message = [`${priceValue} 원이 투입되었습니다`];
 
         walletCash = walletCash - priceValue;
-        collectedCash = moneyButtonClicResponse.collectedCash + priceValue;
+        collectedCash = collectedCash + priceValue;
 
         walletCashArray[priceIndex] = walletCashArray[priceIndex] - 1;
         collectedCashArray[priceIndex] = collectedCashArray[priceIndex] + 1;
