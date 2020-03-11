@@ -2,5 +2,92 @@
     width: 200px;
     height: 600px;
     border: 1px solid black;
+    background-color: #f1bcae;
     float: left;
+}
+
+.walletArea > .buttonArea {
+    width: 200px;
+    height: 520px;
+    float: left;
+    display: flex;
+    padding-top: 30px;
+    font-size: 18px;
+}
+
+.walletArea > .buttonArea > .cashValueArea {
+    float: left;
+    width: 100px;
+    height: 500px;
+}
+
+.walletArea > .buttonArea > .cashValueArea > ul {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.walletArea > .buttonArea > .cashValueArea > ul > li {
+    width: 100%;
+    height: 70px;
+}
+
+.walletArea > .buttonArea > .cashValueArea > ul > li > button {
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #1b262c;
+    color: #f3d4d4;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.walletArea > .buttonArea > .cashValueArea > ul > li > button:hover{
+    background-color: gray;
+}
+
+.walletArea > .buttonArea > .cashValueArea > ul > li > button:active{
+    font-size: 14px;
+}
+
+.walletArea > .buttonArea > .cashCountArea {
+    float: right;
+    width: 100px;
+    height: 500px;
+}
+
+.walletArea > .buttonArea > .cashCountArea > ul {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.walletArea > .buttonArea > .cashCountArea > ul > li {
+    width: 100%;
+    height: 70px;
+}
+
+.walletArea > .buttonArea > .cashCountArea > ul > li > p {
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 60px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.walletArea > p {
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 24px;
+    font-weight: bold;
 }
