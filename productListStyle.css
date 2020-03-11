@@ -1,6 +1,58 @@
 .productListArea {
+    display: grid;
     width: 400px;
     height: 600px;
-    border: 1px solid black;
+    outline: 1px solid black;
     float: left;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(50px, 100px);
+    grid-gap: 5px;
+}
+
+.productListArea > button {
+    background-color: white;
+    border: 1px solid black;
+}
+.productListArea > button > p {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.productListArea > .focus {
+    background-color: white;
+    outline: 3px solid red;
+}
+
+.productListArea > :hover {
+    outline: 3px solid steelblue;
+}
+
+.productListArea > :active {
+    outline: 1px solid black;
+    border: 3px solid blue;
+}
+
+.productListArea > button > .index {
+    text-align: center;
+    height: 25%;
+    line-height: 2.5vh;
+    border-bottom: 1px solid black;
+    background-color: #1b262c;
+}
+
+.productListArea > button > .name {
+    text-align: center;
+    height: 50%;
+    line-height: 5vh;
+    border-bottom: 1px solid black;
+    background-color: #ff9d9d;
+    color: black;
+}
+
+.productListArea > button > .price {
+    text-align: center;
+    height: 25%;
+    line-height: 2.5vh;
+    background-color: #f3d4d4;
+    color: black;
 }
