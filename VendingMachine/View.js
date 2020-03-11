@@ -20,6 +20,9 @@ class View {
     onNotifyWalletCashChanged(walletCash) {
     }
 
+    onNotifyWalletCashArrayChanged(walletCashArray) {
+    }
+
     onNotifyMessageOccured(message) {
     }
 

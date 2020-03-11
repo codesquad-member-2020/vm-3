@@ -23,6 +23,9 @@ class WalletView extends View {
 
     onNotifyWalletCashChanged(walletCash) {
     }
+
+    onNotifyWalletCashArrayChanged(walletCashArray) {
+    }
 }
 
 export default WalletView;
