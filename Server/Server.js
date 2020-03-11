@@ -14,13 +14,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+const priceValueArray = [10, 50, 100, 500, 1000, 5000, 10000];
 const priceTypeCount = 7;
 const productListJSON = fs.readFileSync('productData.json', 'utf8');
 const productList = JSON.parse(productListJSON);
 let collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
 let walletCashArray = [0, 1, 5, 5, 2, 2, 1];
 let collectedCash = 0;
-let walletCash = 0;
+let walletCash = 23550;
 let inputNumber = 0;
 
 app.get('/get/initial-data', (req, res) => {
@@ -95,6 +96,32 @@ app.patch('/patch/ok-button-click', (req, res) => {
     }
 
     res.send(okButtonClickResponse);
+});
+
+app.patch('/patch/money-button-click', (req, res) => {
+    const moneyButtonClicResponse = {};
+
+    const priceIndex = req.body.index - 1;
+    const priceValue = priceValueArray[priceIndex];
+
+    if (walletCashArray[priceIndex] > 1) {
+        moneyButtonClicResponse.message = [`${priceValue} 원이 투입되었습니다`];
+
+        walletCash = walletCash - priceValue;
+        collectedCash = moneyButtonClicResponse.collectedCash + priceValue;
+
+        walletCashArray[priceIndex] = walletCashArray[priceIndex] - 1;
+        collectedCashArray[priceIndex] = collectedCashArray[priceIndex] + 1;
+
+        moneyButtonClicResponse.walletCash = walletCash;
+        moneyButtonClicResponse.collectedCash = collectedCash;
+        moneyButtonClicResponse.walletCashArray = walletCashArray;
+    }
+    else {
+        moneyButtonClicResponse.message = [`투입하려는 금액이 0개입니다.`];
+    }
+    
+    res.send(moneyButtonClicResponse);
 });
 
 function initializeValue() {
