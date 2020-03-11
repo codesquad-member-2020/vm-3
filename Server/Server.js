@@ -69,6 +69,34 @@ app.patch('/patch/numberButtonClick', (req, res) => {
     res.send(numberButtonClickResponse);
 });
 
+app.patch('/patch/ok-button-click', (req, res) => {
+    const selectedItemPrice = productList[inputNumber].price;
+    const selectedItemName = productList[inputNumber].name;
+    const okButtonClickResponse = {};
+
+    if ( 1 > inputNumber ) {
+        okButtonClickResponse.message = ["상품번호가 입력되지 않았습니다."];
+    }
+    else if ( inputNumber > productList.length ) {
+        okButtonClickResponse.message = ["올바르지 않은 상품번호입니다."];
+    }
+    else {
+        if ( collectedCash < productList[inputNumber].price ) {
+            okButtonClickResponse.message = [`투입된 금액이 부족합니다.`];
+        }
+        else {
+            okButtonClickResponse.message = [`${selectedItemName} 이 판매되었습니다.`];
+
+            collectedCash = collectedCash - selectedItemPrice;
+            collectedCashArray = makeCollectedCashArray(collectedCash);
+    
+            okButtonClickResponse.collectedCash = collectedCash;
+        }
+    }
+
+    res.send(okButtonClickResponse);
+});
+
 function initializeValue() {
     collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
     walletCashArray = [0, 1, 5, 5, 2, 2, 1];
