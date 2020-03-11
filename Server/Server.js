@@ -124,6 +124,27 @@ app.patch('/patch/money-button-click', (req, res) => {
     res.send(moneyButtonClicResponse);
 });
 
+app.patch('/patch/cancel-button-click', (req, res) => {
+    const cancelButtonClickResponse = {};
+
+    cancelButtonClickResponse.message = ['상품 선택이 취소되었습니다.'];
+    
+    walletCash = walletCash + collectedCash;
+
+    for (let index = 0 ; index < walletCashArray.length ; ++index) {
+        walletCashArray[index] = walletCashArray[index] + collectedCashArray[index];
+    }
+
+    collectedCash = 0;
+    collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
+
+    cancelButtonClickResponse.walletCash = walletCash;
+    cancelButtonClickResponse.collectedCash = collectedCash;
+    cancelButtonClickResponse.walletCashArray = walletCashArray;
+
+    res.send(cancelButtonClickResponse);
+});
+
 function initializeValue() {
     collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
     walletCashArray = [0, 1, 5, 5, 2, 2, 1];
