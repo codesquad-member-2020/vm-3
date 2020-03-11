@@ -1,0 +1,121 @@
+[
+    {
+        "index": 1,
+        "name": "코카콜라",
+        "price": 1300
+    },
+    {
+        "index": 2,
+        "name": "밀키스",
+        "price": 1000
+    },
+    {
+        "index": 3,
+        "name": "웰치스",
+        "price": 1700
+    },
+    {
+        "index": 4,
+        "name": "레드불",
+        "price": 1800
+    },
+    {
+        "index": 5,
+        "name": "핫식스",
+        "price": 1000
+    },
+    {
+        "index": 6,
+        "name": "TOP",
+        "price": 2000
+    },
+    {
+        "index": 7,
+        "name": "오란C",
+        "price": 800
+    },
+    {
+        "index": 8,
+        "name": "파워에이드",
+        "price": 2000
+    },
+    {
+        "index": 9,
+        "name": "펩시콜라",
+        "price": 1000
+    },
+    {
+        "index": 10,
+        "name": "알로에",
+        "price": 1100
+    },
+    {
+        "index": 11,
+        "name": "박카스",
+        "price": 700
+    },
+    {
+        "index": 12,
+        "name": "초코우유",
+        "price": 1000
+    },
+    {
+        "index": 13,
+        "name": "딸기우유",
+        "price": 1100
+    },
+    {
+        "index": 14,
+        "name": "바나나우유",
+        "price": 1200
+    },
+    {
+        "index": 15,
+        "name": "밀키스",
+        "price": 1100
+    },
+    {
+        "index": 16,
+        "name": "암바사",
+        "price": 1100
+    },
+    {
+        "index": 17,
+        "name": "커피우유",
+        "price": 1000
+    },
+    {
+        "index": 18,
+        "name": "초코송이",
+        "price": 780
+    },
+    {
+        "index": 19,
+        "name": "칸쵸",
+        "price": 860
+    },
+    {
+        "index": 20,
+        "name": "썬칩",
+        "price": 2000
+    },
+    {
+        "index": 21,
+        "name": "홈런볼",
+        "price": 1500
+    },
+    {
+        "index": 22,
+        "name": "빈츠",
+        "price": 1900
+    },
+    {
+        "index": 23,
+        "name": "자일리톨",
+        "price": 950
+    },    {
+        "index": 24,
+        "name": "후라보노",
+        "price": 800
+    }
+]
