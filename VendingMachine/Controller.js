@@ -34,22 +34,65 @@ class Controller {
         });
 
         fetch("https://dev-angelo.dlinkddns.com:8090/get/initial-data")
-        .then(response => response.json())
-        .then(responseData => {
-            this._handleResponseData(responseData);
-        });
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleNumberButtonClick(clickedNumber) {
         console.log("_handleNumberButtonClick called. clickedNumber: ", clickedNumber);
+
+        const data = {};
+        data.number = clickedNumber;
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/patch/number-button-click", {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleOKButtonClick() {
         console.log("_handleOKButtonClick called.");
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/patch/ok-button-click", {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleCancelButtonClick() {
         console.log("_handleCancelButtonClick called.");
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/patch/cancel-button-click", {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleProductButtonClick(index) {
@@ -66,10 +109,10 @@ class Controller {
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(responseData => {
-            this._handleResponseData(responseData);
-        });
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleMoneyButtonClick(index) {
@@ -87,10 +130,10 @@ class Controller {
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json())
-        .then(responseData => {
-            this._handleResponseData(responseData);
-        });
+            .then(response => response.json())
+            .then(responseData => {
+                this._handleResponseData(responseData);
+            });
     }
 
     _handleResponseData(responseData) {
@@ -104,14 +147,14 @@ class Controller {
         if (responseData.productList !== undefined)
             this._productModel.setProductList(responseData.productList);
 
-        if (responseData.walletCash !== undefined) 
+        if (responseData.walletCash !== undefined)
             this._cashModel.setWalletCash(responseData.walletCash);
 
         if (responseData.walletCashArray !== undefined)
-            this._cashModel.setWalletCashArray(responseData.walletCashArray);    
+            this._cashModel.setWalletCashArray(responseData.walletCashArray);
 
         if (responseData.collectedCash !== undefined)
-            this._cashModel.setCollectedCash(responseData.collectedCash);    
+            this._cashModel.setCollectedCash(responseData.collectedCash);
     }
 }
 
