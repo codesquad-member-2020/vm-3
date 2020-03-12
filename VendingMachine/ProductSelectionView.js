@@ -10,7 +10,25 @@ class ProductSelectionView extends View {
   }
 
   render() {
-    return ``;
+    return `  
+    <div class="productSelectionArea">
+    <div class="inputAmount"><span></span> 원</div>
+    <ol class="selectBtns">
+      <li><button>1</button></li>
+      <li><button>2</button></li>
+      <li><button>3</button></li>
+      <li><button>4</button></li>
+      <li><button>5</button></li>
+      <li><button>6</button></li>
+      <li><button>7</button></li>
+      <li><button>8</button></li>
+      <li><button>9</button></li>
+      <li><button>OK</button></li>
+      <li><button>0</button></li>
+      <li><button>Cancel</button></li>
+    </ol>
+    <div class="messageArea"></div>
+  </div>`;
   }
 
   appendHandler(callback) {
@@ -23,14 +41,15 @@ class ProductSelectionView extends View {
     this.inputAmount = document.querySelector(".inputAmount span");
     this.selectBtns = document.querySelector(".selectBtns");
     this.messageArea = document.querySelector(".messageArea");
+
+    this._appendEventHandler();
   }
 
   _appendEventHandler() {
-    this.selectBtns.addEventListener("click", event => {
-      if (event.target.textContent === "OK") this._onOKButtonClicked(event);
-      else if (event.target.textContent === "Cancel")
-        this._onCancelButtonClicked(event);
-      else this._onNumberButtonClicked(event);
+    this.selectBtns.addEventListener("click", ({ target }) => {
+      if (target.textContent === "OK") this._onOKButtonClicked();
+      else if (target.textContent === "Cancel") this._onCancelButtonClicked();
+      else this._onNumberButtonClicked(parseInt(target.textContent));
     });
   }
 
