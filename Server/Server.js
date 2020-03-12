@@ -21,7 +21,7 @@ const productList = JSON.parse(productListJSON);
 let collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
 let walletCashArray = [0, 1, 5, 5, 2, 2, 1];
 let collectedCash = 0;
-let walletCash = 23550;
+let walletCash = 25050;
 let inputNumber = 0;
 
 app.get('/get/initial-data', (req, res) => {
@@ -58,7 +58,7 @@ app.patch('/patch/product-button-click', (req, res) => {
     res.send(productButtonClickResponse);
 });
 
-app.patch('/patch/numberButtonClick', (req, res) => {
+app.patch('/patch/number-button-click', (req, res) => {
     const numberButtonClickResponse = {};
 
     inputNumber = (inputNumber % 10) * 10 + req.body.number;
@@ -71,8 +71,7 @@ app.patch('/patch/numberButtonClick', (req, res) => {
 });
 
 app.patch('/patch/ok-button-click', (req, res) => {
-    const selectedItemPrice = productList[inputNumber].price;
-    const selectedItemName = productList[inputNumber].name;
+    const cvtIndex = inputNumber - 1;
     const okButtonClickResponse = {};
 
     if ( 1 > inputNumber ) {
@@ -82,7 +81,10 @@ app.patch('/patch/ok-button-click', (req, res) => {
         okButtonClickResponse.message = ["올바르지 않은 상품번호입니다."];
     }
     else {
-        if ( collectedCash < productList[inputNumber].price ) {
+        const selectedItemPrice = productList[cvtIndex].price;
+        const selectedItemName = productList[cvtIndex].name;
+
+        if ( collectedCash < selectedItemPrice ) {
             okButtonClickResponse.message = [`투입된 금액이 부족합니다.`];
         }
         else {
@@ -104,7 +106,7 @@ app.patch('/patch/money-button-click', (req, res) => {
     const priceIndex = req.body.index - 1;
     const priceValue = priceValueArray[priceIndex];
 
-    if (walletCashArray[priceIndex] > 1) {
+    if (walletCashArray[priceIndex] >= 1) {
         moneyButtonClicResponse.message = [`${priceValue} 원이 투입되었습니다`];
 
         walletCash = walletCash - priceValue;
@@ -149,7 +151,7 @@ function initializeValue() {
     collectedCashArray = [0, 0, 0, 0, 0, 0, 0];
     walletCashArray = [0, 1, 5, 5, 2, 2, 1];
     collectedCash = 0;
-    walletCash = 0;
+    walletCash = 25050;
     inputNumber = 0;
 }
 
@@ -160,13 +162,13 @@ function makeCollectedCashArray(collectedCash) {
         collectedCashArray.push(0);
     }
 
-    collectedCashArray[6] = collectedCash / 10000;
-    collectedCashArray[5] = (collectedCash % 10000) / 5000;
-    collectedCashArray[4] = ((collectedCash % 10000) % 5000) / 1000;
-    collectedCashArray[3] = (((collectedCash % 10000) % 5000) % 1000) / 500;
-    collectedCashArray[2] = ((((collectedCash % 10000) % 5000) % 1000 ) % 500) / 100;
-    collectedCashArray[1] = (((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) / 50;
-    collectedCashArray[0] = ((((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) % 50) / 10;
+    collectedCashArray[6] = parseInt(collectedCash / 10000);
+    collectedCashArray[5] = parseInt((collectedCash % 10000) / 5000);
+    collectedCashArray[4] = parseInt(((collectedCash % 10000) % 5000) / 1000);
+    collectedCashArray[3] = parseInt((((collectedCash % 10000) % 5000) % 1000) / 500);
+    collectedCashArray[2] = parseInt(((((collectedCash % 10000) % 5000) % 1000 ) % 500) / 100);
+    collectedCashArray[1] = parseInt((((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) / 50);
+    collectedCashArray[0] = parseInt(((((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) % 50) / 10);
 
     return collectedCashArray;
 }
