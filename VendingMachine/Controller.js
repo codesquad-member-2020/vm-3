@@ -32,6 +32,12 @@ class Controller {
             //element.render();
             element.onNotifyRenderFinished();
         });
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/get/initial-data")
+        .then(response => response.json())
+        .then(responseData => {
+            this._handleResponseData(responseData);
+        });
     }
 
     _handleNumberButtonClick(clickedNumber) {
@@ -48,10 +54,64 @@ class Controller {
 
     _handleProductButtonClick(index) {
         console.log("_handleNumberButtonClick called. index: ", index);
+        const data = {};
+        data.index = index;
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/patch/product-button-click", {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            this._handleResponseData(responseData);
+        });
     }
 
-    _handleMoneyButtonClick(price) {
-        console.log("_handleMoneyButtonClick called. price: ", price);
+    _handleMoneyButtonClick(index) {
+        console.log("_handleMoneyButtonClick called. index: ", index);
+
+        const data = {};
+        data.index = index;
+
+        fetch("https://dev-angelo.dlinkddns.com:8090/patch/money-button-click", {
+            method: 'PATCH',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            this._handleResponseData(responseData);
+        });
+    }
+
+    _handleResponseData(responseData) {
+        if (responseData.message !== undefined) {
+            console.log(responseData.message);
+            this._view.forEach(element => {
+                element.onNotifyMessageOccured(responseData.message)
+            });
+        }
+
+        if (responseData.productList !== undefined)
+            this._productModel.setProductList(responseData.productList);
+
+        if (responseData.walletCash !== undefined) 
+            this._cashModel.setWalletCash(responseData.walletCash);
+
+        if (responseData.walletCashArray !== undefined)
+            this._cashModel.setWalletCashArray(responseData.walletCashArray);    
+
+        if (responseData.collectedCash !== undefined)
+            this._cashModel.setCollectedCash(responseData.collectedCash);    
     }
 }
 
