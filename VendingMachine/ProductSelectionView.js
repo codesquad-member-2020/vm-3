@@ -12,7 +12,7 @@ class ProductSelectionView extends View {
   render() {
     return `  
     <div class="productSelectionArea">
-    <div class="inputAmount"><span></span> 원</div>
+    <div class="inputAmount"><span></span> 웝</div>
     <ol class="selectBtns">
       <li><button>1</button></li>
       <li><button>2</button></li>
@@ -59,6 +59,7 @@ class ProductSelectionView extends View {
 
   onNotifyMessageOccured(message) {
     this.messageArea.innerHTML += `${message}</br>`;
+    this.messageArea.scrollTop = 20000;
   }
 }
 
