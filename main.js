@@ -1,9 +1,9 @@
-import Controller from './VendingMachine/Controller.js'
-import ProductModel from './VendingMachine/ProductModel.js'
-import CashModel from './VendingMachine/CashModel.js'
-import ProductListView from './VendingMachine/ProductListView.js'
-import ProductSelectionView from './VendingMachine/ProductSelectionView.js'
-import WalletView from './VendingMachine/WalletView.js'
+import Controller from './js/controller/Controller.js'
+import ProductModel from './js/model/ProductModel.js'
+import CashModel from './js/model/CashModel.js'
+import ProductListView from './js/view/ProductListView.js'
+import ProductSelectionView from './js/view/ProductSelectionView.js'
+import WalletView from './js/view/WalletView.js'
 
 
 window.addEventListener('DOMContentLoaded', () => {

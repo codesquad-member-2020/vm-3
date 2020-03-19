@@ -1,4 +1,4 @@
-import VM_ENUM from "./VMEnum.js";
+import VM_ENUM from "../enum/VMEnum.js";
 const VM_AJAX_INFORMATION = VM_ENUM.VM_AJAX_INFORMATION;
 
 class Controller {
