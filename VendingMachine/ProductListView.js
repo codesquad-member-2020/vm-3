@@ -10,8 +10,7 @@ class ProductListView extends View {
     }
 
     render() {
-        return 
-        `
+        return `
             <div class="productListArea"></div>
         `;
     }
@@ -56,7 +55,7 @@ class ProductListView extends View {
             <button class="product">
                 <p class="index">${element.index}</p>
                 <p class="name">${element.name}</p>
-                <p class="price">${element.price} 원</p>
+                <p class="price">${element.price} 웝</p>
             </button>
             `
         });

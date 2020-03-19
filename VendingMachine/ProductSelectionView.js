@@ -12,23 +12,23 @@ class ProductSelectionView extends View {
   render() {
     return `  
     <div class="productSelectionArea">
-    <div class="inputAmount"><span></span> 웝</div>
-    <ol class="selectBtns">
-      <li><button>1</button></li>
-      <li><button>2</button></li>
-      <li><button>3</button></li>
-      <li><button>4</button></li>
-      <li><button>5</button></li>
-      <li><button>6</button></li>
-      <li><button>7</button></li>
-      <li><button>8</button></li>
-      <li><button>9</button></li>
-      <li><button>OK</button></li>
-      <li><button>0</button></li>
-      <li><button>Cancel</button></li>
-    </ol>
-    <div class="messageArea"></div>
-  </div>`;
+      <div class="inputAmount"><span></span> 웝</div>
+        <ol class="selectBtns">
+          <li><button>1</button></li>
+          <li><button>2</button></li>
+          <li><button>3</button></li>
+          <li><button>4</button></li>
+          <li><button>5</button></li>
+          <li><button>6</button></li>
+          <li><button>7</button></li>
+          <li><button>8</button></li>
+          <li><button>9</button></li>
+          <li><button>OK</button></li>
+          <li><button>0</button></li>
+          <li><button>Cancel</button></li>
+        </ol>
+      <div class="messageArea"></div>
+    </div>`;
   }
 
   appendHandler(callback) {

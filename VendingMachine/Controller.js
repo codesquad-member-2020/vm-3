@@ -27,9 +27,23 @@ class Controller {
     }
 
     _initialize() {
+        let result = "";
+
+        this._view.forEach(element => {
+            result += element.render();
+        });
+
+        const wrap = document.querySelector(".wrap");
+        wrap.innerHTML = 
+        `
+            <div class="vendingMachine">
+                ${result}
+            </div>
+        `;
+
         this._view.forEach(element => {
             //render() method will be called after eature_HC_002~004 are finished.
-            //element.render();
+            element.render();
             element.onNotifyRenderFinished();
         });
 
