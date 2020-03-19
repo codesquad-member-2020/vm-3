@@ -11,35 +11,34 @@ class WalletView extends View {
     }
 
     render() {
-        return
-        `
+        return `
         <div class="walletArea">
-        <div class="buttonArea">
-            <div class="cashValueArea">
-                <ul class="cashCountList">
-                    <li><button></button></li>
-                    <li><button></button></li>
-                    <li><button></button></li>
-                    <li><button></button></li>
-                    <li><button></button></li>
-                    <li><button></button></li>
-                    <li><button></button></li>
-                </ul>
+            <div class="buttonArea">
+                <div class="cashValueArea">
+                    <ul class="cashCountList">
+                        <li><button>10원</button></li>
+                        <li><button>50원</button></li>
+                        <li><button>100원</button></li>
+                        <li><button>500원</button></li>
+                        <li><button>1000원</button></li>
+                        <li><button>5000원</button></li>
+                        <li><button>10000원</button></li>
+                    </ul>
+                </div>
+                <div class="cashCountArea">
+                    <ul class="cashCountList">
+                        <li><p></p></li>
+                        <li><p></p></li>
+                        <li><p></p></li>
+                        <li><p></p></li>
+                        <li><p></p></li>
+                        <li><p></p></li>
+                        <li><p></p></li>
+                    </ul>
+                </div>
             </div>
-            <div class="cashCountArea">
-                <ul class="cashCountList">
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li><p></p></li>
-                    <li><p></p></li>
-                </ul>
-            </div>
+            <p class="totalPrice"></p>
         </div>
-        <p class="totalPrice"></p>
-    </div>
     `;
     }
 
