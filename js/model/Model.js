@@ -1,4 +1,4 @@
-import View from './View.js'
+import View from '../view/View.js'
 
 class Model {
     constructor(...views) {
