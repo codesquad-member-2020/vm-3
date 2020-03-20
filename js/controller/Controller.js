@@ -6,21 +6,17 @@ class Controller {
         this._view = [];
         this._view.push(productListView, productSelectionView, walletView);
 
+        this._cancelTimer = null;
+
         this._productModel = productModel;
         this._cashModel = cashModel;
 
-        productListView.appendHandler({
-            productButtonClickHandler: this._handleProductButtonClick.bind(this)
-        });
+        this._view.forEach(element => {
+            const buttonClickHandler = this._handleButtonClick.bind(this);
 
-        productSelectionView.appendHandler({
-            numberButtonClickHandler: this._handleNumberButtonClick.bind(this),
-            okButtonClickHandler: this._handleOKButtonClick.bind(this),
-            cancelButtonClickHandler: this._handleCancelButtonClick.bind(this)
-        });
-
-        walletView.appendHandler({
-            moneyButtonClickHandler: this._handleMoneyButtonClick.bind(this)
+            element.appendHandler({
+                buttonClickHandler: this._handleButtonClick.bind(this)
+            });
         });
 
         this._initialize();
@@ -54,9 +50,40 @@ class Controller {
             });
     }
 
-    _handleNumberButtonClick(clickedNumber) {
-        console.log("_handleNumberButtonClick called. clickedNumber: ", clickedNumber);
+    _handleButtonClick(eventInformation) {
+        clearTimeout(this._cancelTimer);
+        
+        const cancelTimeoutCount = 5000;
+        if (eventInformation.type !== "cancelButtonClick")
+            this._cancelTimer = setTimeout(() => {
+                this._handleCancelButtonClick();
+            }, cancelTimeoutCount);
 
+        switch (eventInformation.type) {
+            case "productButtonClicked": {
+                this._handleProductButtonClick(eventInformation.data)
+                break;
+            }
+            case "okButtonClick": {
+                this._handleOKButtonClick();
+                break;
+            }
+            case "cancelButtonClick": {
+                this._handleCancelButtonClick();
+                break;
+            }
+            case "numberButtonClick": {
+                this._handleNumberButtonClick(eventInformation.data);
+                break;
+            }
+            case "moneyButtonClick": {
+                this._handleMoneyButtonClick(eventInformation.data);
+                break;
+            }
+        }
+    }
+
+    _handleNumberButtonClick(clickedNumber) {
         const data = {};
         data.number = clickedNumber;
 
@@ -76,8 +103,6 @@ class Controller {
     }
 
     _handleOKButtonClick() {
-        console.log("_handleOKButtonClick called.");
-
         fetch("https://dev-angelo.dlinkddns.com:8090/patch/ok-button-click", {
             method: 'PATCH',
             mode: 'cors',
@@ -93,8 +118,6 @@ class Controller {
     }
 
     _handleCancelButtonClick() {
-        console.log("_handleCancelButtonClick called.");
-
         fetch("https://dev-angelo.dlinkddns.com:8090/patch/cancel-button-click", {
             method: 'PATCH',
             mode: 'cors',
@@ -110,7 +133,6 @@ class Controller {
     }
 
     _handleProductButtonClick(index) {
-        console.log("_handleNumberButtonClick called. index: ", index);
         const data = {};
         data.index = index;
 
@@ -130,8 +152,6 @@ class Controller {
     }
 
     _handleMoneyButtonClick(index) {
-        console.log("_handleMoneyButtonClick called. index: ", index);
-
         const data = {};
         data.index = index;
 
@@ -152,7 +172,6 @@ class Controller {
 
     _handleResponseData(responseData) {
         if (responseData.message !== undefined) {
-            console.log(responseData.message);
             this._view.forEach(element => {
                 element.onNotifyMessageOccured(responseData.message)
             });
