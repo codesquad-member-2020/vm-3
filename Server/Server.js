@@ -162,13 +162,16 @@ function makeCollectedCashArray(collectedCash) {
         collectedCashArray.push(0);
     }
 
-    collectedCashArray[6] = parseInt(collectedCash / 10000);
-    collectedCashArray[5] = parseInt((collectedCash % 10000) / 5000);
-    collectedCashArray[4] = parseInt(((collectedCash % 10000) % 5000) / 1000);
-    collectedCashArray[3] = parseInt((((collectedCash % 10000) % 5000) % 1000) / 500);
-    collectedCashArray[2] = parseInt(((((collectedCash % 10000) % 5000) % 1000 ) % 500) / 100);
-    collectedCashArray[1] = parseInt((((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) / 50);
-    collectedCashArray[0] = parseInt(((((((collectedCash % 10000) % 5000) % 1000 ) % 500) % 100) % 50) / 10);
+    for (let divisionIndex = 0 ; divisionIndex < priceTypeCount ; ++divisionIndex) {
+        let cvtCollectedCash = parseInt(collectedCash);
+
+        for (let moduloIndex = priceTypeCount - 1 ; moduloIndex > divisionIndex ; --moduloIndex) {
+            cvtCollectedCash = cvtCollectedCash % priceValueArray[moduloIndex];
+        }
+
+        cvtCollectedCash = cvtCollectedCash / priceValueArray[divisionIndex];
+        collectedCash[divisionIndex] = parseInt(cvtCollectedCash);
+    }
 
     return collectedCashArray;
 }
