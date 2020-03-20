@@ -6,6 +6,8 @@ class Controller {
         this._view = [];
         this._view.push(productListView, productSelectionView, walletView);
 
+        this._cancelTimer = null;
+
         this._productModel = productModel;
         this._cashModel = cashModel;
 
@@ -49,6 +51,12 @@ class Controller {
     }
 
     _handleButtonClick(eventInformation) {
+        clearTimeout(this._cancelTimer);
+
+        this._cancelTimer = setTimeout(() => {
+            this._handleCancelButtonClick();
+        }, 5000);
+
         switch (eventInformation.type) {
             case "productButtonClicked": {
                 this._handleProductButtonClick(eventInformation.data)
