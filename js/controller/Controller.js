@@ -9,18 +9,12 @@ class Controller {
         this._productModel = productModel;
         this._cashModel = cashModel;
 
-        productListView.appendHandler({
-            productButtonClickHandler: this._handleProductButtonClick.bind(this)
-        });
+        this._view.forEach(element => {
+            const buttonClickHandler = this._handleButtonClick.bind(this);
 
-        productSelectionView.appendHandler({
-            numberButtonClickHandler: this._handleNumberButtonClick.bind(this),
-            okButtonClickHandler: this._handleOKButtonClick.bind(this),
-            cancelButtonClickHandler: this._handleCancelButtonClick.bind(this)
-        });
-
-        walletView.appendHandler({
-            moneyButtonClickHandler: this._handleMoneyButtonClick.bind(this)
+            element.appendHandler({
+                buttonClickHandler: this._handleButtonClick.bind(this)
+            });
         });
 
         this._initialize();
@@ -52,6 +46,31 @@ class Controller {
             .then(responseData => {
                 this._handleResponseData(responseData);
             });
+    }
+
+    _handleButtonClick(eventInformation) {
+        switch (eventInformation.type) {
+            case "productButtonClicked": {
+                this._handleProductButtonClick(eventInformation.data)
+                break;
+            }
+            case "okButtonClick": {
+                this._handleOKButtonClick();
+                break;
+            }
+            case "cancelButtonClick": {
+                this._handleCancelButtonClick();
+                break;
+            }
+            case "numberButtonClick": {
+                this._handleNumberButtonClick(eventInformation.data);
+                break;
+            }
+            case "moneyButtonClick": {
+                this._handleMoneyButtonClick(eventInformation.data);
+                break;
+            }
+        }
     }
 
     _handleNumberButtonClick(clickedNumber) {

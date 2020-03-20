@@ -16,7 +16,7 @@ class ProductListView extends View {
     }
 
     appendHandler(callback) {
-        this._onProductButtonClicked = callback.productButtonClickHandler;
+        this._onProductButtonClicked = callback.buttonClickHandler;
     }
 
     onNotifyRenderFinished() {
@@ -28,7 +28,8 @@ class ProductListView extends View {
 
         this._buttons.forEach(element => {
             const productIndex = element.querySelector(".index").innerHTML;
-            element.addEventListener('click', event => this._onProductButtonClicked(productIndex));
+            const eventInformation = {type: "productButtonClicked", data: productIndex}
+            element.addEventListener('click', event => this._onProductButtonClicked(eventInformation));
         });
     }
 

@@ -43,7 +43,7 @@ class WalletView extends View {
     }
 
     appendHandler(callback) {
-        this._onMoneyButtonClicked = callback.moneyButtonClickHandler;
+        this._onMoneyButtonClicked = callback.buttonClickHandler;
     }
 
     onNotifyRenderFinished() {
@@ -61,7 +61,8 @@ class WalletView extends View {
         const buttons = this._walletArea.querySelectorAll("button");
 
         buttons.forEach((element, index) => {
-            element.addEventListener('click', event => this._onMoneyButtonClicked(index + 1));
+            const eventInformation = {type: "moneyButtonClick", data: index + 1}
+            element.addEventListener('click', event => this._onMoneyButtonClicked(eventInformation));
         });
     }
 

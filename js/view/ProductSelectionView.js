@@ -32,9 +32,9 @@ class ProductSelectionView extends View {
   }
 
   appendHandler(callback) {
-    this._onNumberButtonClicked = callback.numberButtonClickHandler;
-    this._onOKButtonClicked = callback.okButtonClickHandler;
-    this._onCancelButtonClicked = callback.cancelButtonClickHandler;
+    this._onNumberButtonClicked = callback.buttonClickHandler;
+    this._onOKButtonClicked = callback.buttonClickHandler;
+    this._onCancelButtonClicked = callback.buttonClickHandler;
   }
 
   onNotifyRenderFinished() {
@@ -47,9 +47,9 @@ class ProductSelectionView extends View {
 
   _appendEventHandler() {
     this.selectBtns.addEventListener("click", ({ target }) => {
-      if (target.textContent === "OK") this._onOKButtonClicked();
-      else if (target.textContent === "Cancel") this._onCancelButtonClicked();
-      else this._onNumberButtonClicked(parseInt(target.textContent));
+      if (target.textContent === "OK") this._onOKButtonClicked({type: "okButtonClick"});
+      else if (target.textContent === "Cancel") this._onCancelButtonClicked({type: "cancelButtonClick"});
+      else this._onNumberButtonClicked({type: "numberButtonClick", data: parseInt(target.textContent)});
     });
   }
 
