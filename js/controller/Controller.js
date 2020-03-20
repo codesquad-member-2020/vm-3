@@ -74,8 +74,6 @@ class Controller {
     }
 
     _handleNumberButtonClick(clickedNumber) {
-        console.log("_handleNumberButtonClick called. clickedNumber: ", clickedNumber);
-
         const data = {};
         data.number = clickedNumber;
 
@@ -95,8 +93,6 @@ class Controller {
     }
 
     _handleOKButtonClick() {
-        console.log("_handleOKButtonClick called.");
-
         fetch("https://dev-angelo.dlinkddns.com:8090/patch/ok-button-click", {
             method: 'PATCH',
             mode: 'cors',
@@ -112,8 +108,6 @@ class Controller {
     }
 
     _handleCancelButtonClick() {
-        console.log("_handleCancelButtonClick called.");
-
         fetch("https://dev-angelo.dlinkddns.com:8090/patch/cancel-button-click", {
             method: 'PATCH',
             mode: 'cors',
@@ -129,7 +123,6 @@ class Controller {
     }
 
     _handleProductButtonClick(index) {
-        console.log("_handleNumberButtonClick called. index: ", index);
         const data = {};
         data.index = index;
 
@@ -149,8 +142,6 @@ class Controller {
     }
 
     _handleMoneyButtonClick(index) {
-        console.log("_handleMoneyButtonClick called. index: ", index);
-
         const data = {};
         data.index = index;
 
@@ -171,7 +162,6 @@ class Controller {
 
     _handleResponseData(responseData) {
         if (responseData.message !== undefined) {
-            console.log(responseData.message);
             this._view.forEach(element => {
                 element.onNotifyMessageOccured(responseData.message)
             });
