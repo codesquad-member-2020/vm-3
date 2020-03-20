@@ -53,10 +53,11 @@ class Controller {
     _handleButtonClick(eventInformation) {
         clearTimeout(this._cancelTimer);
         
+        const cancelTimeoutCount = 5000;
         if (eventInformation.type !== "cancelButtonClick")
             this._cancelTimer = setTimeout(() => {
                 this._handleCancelButtonClick();
-            }, 5000);
+            }, cancelTimeoutCount);
 
         switch (eventInformation.type) {
             case "productButtonClicked": {
